@@ -8,10 +8,12 @@ import java.util.Scanner;
  * @author Yagor
  */
 public class Tabuleiro {
+    //Atributos
     private char[][] tabuleiro;
     private int dimensao;
     private Scanner sc;
     
+    //Construtor
     public Tabuleiro(int dimensao){
         this.dimensao = 8;
         tabuleiro = new char[dimensao][dimensao];
@@ -21,6 +23,7 @@ public class Tabuleiro {
         return this.tabuleiro;
     }
     
+    //Métodos
     public void mostrarTabuleiro(){
         char x = 'A';
         System.out.println("__________________________________");
@@ -61,10 +64,10 @@ public class Tabuleiro {
     }
     
     public boolean posicionarNavio(Arma navio, int linha, int coluna, char ori){
-        //Horizontal
         int tamNavio = navio.getTamanho();
         
         if(ori == 'H'){
+        //Horizontal
             if(coluna+tamNavio > dimensao){
                 System.out.println("<ERRO> Espaço insuficiente!");
                 return false;
