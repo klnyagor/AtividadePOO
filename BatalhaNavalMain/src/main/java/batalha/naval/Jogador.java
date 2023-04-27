@@ -6,12 +6,14 @@ package batalha.naval;
  * @author Yagor
  */
 public class Jogador {
+    //Atributos
     private String nome;
     private Tabuleiro meuJogo;
     private Tabuleiro oponenteJogo;
     private Arma[] navios;
     private int vidas;
     
+    //Construtor
     public Jogador(String nome, Arma[] navios){
         this.nome = nome;
         meuJogo = new Tabuleiro(8);
@@ -28,6 +30,7 @@ public class Jogador {
         return jogador;
     }
     
+    //Métodos
     public void decremento(){
         vidas--;
     }
@@ -91,6 +94,7 @@ public class Jogador {
         }
     }
     
+    //Get and Setters
     public String getNome(){
         return this.nome;
     }
