@@ -14,7 +14,7 @@ public class BatalhaNaval {
     
     
     public BatalhaNaval(){
-        rodadas = 1;
+        rodadas = 0;
     }
     
     public void instanciaArmas(){
@@ -67,6 +67,7 @@ public class BatalhaNaval {
         System.out.println("<PREPAREM-SE> Cada jogador possui 2 tiros por rodada!");
         System.out.println("<PREPAREM-SE> INCIANDO A BATALHA!");
         while(players[0].getVidas()>0 && players[1].getVidas()>0){
+            addRound();
             System.out.println();
             System.out.printf("    *~=~*~=~*  ROUND %d  *~=~*~=~*\n",getRounds());
             for(int i=0;i<2;i++){
@@ -96,7 +97,6 @@ public class BatalhaNaval {
                     e.printStackTrace();
                 }
             }
-            addRound();
             
         }
         Jogador vencedor = vitoria(players[0],players[1]);
