@@ -15,7 +15,7 @@ public class Tabuleiro {
     
     //Construtor
     public Tabuleiro(int dimensao){
-        this.dimensao = 8;
+        this.dimensao = dimensao;
         tabuleiro = new char[dimensao][dimensao];
     }
     
