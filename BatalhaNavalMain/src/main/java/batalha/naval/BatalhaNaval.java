@@ -41,6 +41,7 @@ public class BatalhaNaval {
         System.out.println("Cadastre os jogadores: ");
         instanciaJogadores();
         System.out.println("<AÇÃO> Jogadores Cadastrados");
+        System.out.println();
         System.out.println("*===~==~=~* BATALHA NAVAL-Light *~=~==~===*");
         System.out.println("Posicionar embarcações!");
         System.out.println("Cada jogador possui:\n   3 <'S'>Submarino\n   2 <'C'>Cruzador\n   1 <'P'> Porta-Avião ");
@@ -66,11 +67,12 @@ public class BatalhaNaval {
         System.out.println("*===~==~=~* BATALHA NAVAL-Light *~=~==~===*");
         System.out.println("<PREPAREM-SE> Cada jogador possui 2 tiros por rodada!");
         System.out.println("<PREPAREM-SE> INCIANDO A BATALHA!");
-        while(players[0].getVidas()>0 && players[1].getVidas()>0){
+        while(true){
+        //while(players[0].getVidas()>0 && players[1].getVidas()>0){
             addRound();
             System.out.println();
-            System.out.printf("    *~=~*~=~*  ROUND %d  *~=~*~=~*\n",getRounds());
             for(int i=0;i<2;i++){
+                System.out.printf("  *~=~*~=~*  ROUND %d  *~=~*~=~*\n",getRounds());
                 players[0].mostarJogoOponente(players[1]);
                 System.out.printf("<AÇÃO> Vez do Jogador %s \n",players[0].getNome());
                 System.out.printf("<AÇÃO> Informe seu %dº tiro!\n",i+1);
@@ -84,8 +86,8 @@ public class BatalhaNaval {
             }
             if(players[1].getVidas() <= 0) break;
             System.out.println();
-            System.out.printf("  *~=~*~=~*  ROUND %d  *~=~*~=~*\n",getRounds());
             for(int i=0;i<2;i++){
+                System.out.printf("  *~=~*~=~*  ROUND %d  *~=~*~=~*\n",getRounds());
                 players[1].mostarJogoOponente(players[0]);
                 System.out.printf("<AÇÃO> Vez do Jogador %s \n",players[1].getNome());
                 System.out.printf("<AÇÃO> Informe seu %dº tiro!\n",i+1);
@@ -97,6 +99,7 @@ public class BatalhaNaval {
                     e.printStackTrace();
                 }
             }
+            if(players[0].getVidas() <= 0) break;
             
         }
         Jogador vencedor = vitoria(players[0],players[1]);
