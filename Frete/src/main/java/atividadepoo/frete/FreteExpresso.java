@@ -16,6 +16,10 @@ public class FreteExpresso extends Frete {
     public double calcularFrete() {
         return (getDistancia()*getValor())+(getNivelUrgencia()*100);
     }
+    
+    public String toString(){
+        return String.format("Frete{distancia = %.2f, valor = %.2f, nivelUrgencia = %.0f, valorFrete = %.2f}",getDistancia(),getValor(),getNivelUrgencia(),calcularFrete());
+    }
 
     public double getNivelUrgencia() {
         return nivelUrgencia;
