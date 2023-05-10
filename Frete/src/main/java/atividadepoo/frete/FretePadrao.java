@@ -17,7 +17,7 @@ public class FretePadrao extends Frete {
     }
     
     public String toString(){
-        return String.format("Frete{distancia= %.2f, valorKm= %.2f, valorFrete= %.2f}",getDistancia(),getValor(),calcularFrete());
+        return String.format("Frete{distancia = %.2f, valor = %.2f, valorFrete = %.2f}",getDistancia(),getValor(),calcularFrete());
     }
     
 }
