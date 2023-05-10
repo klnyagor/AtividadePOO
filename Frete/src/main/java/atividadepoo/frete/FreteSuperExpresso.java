@@ -18,7 +18,10 @@ public class FreteSuperExpresso extends Frete {
     public double calcularFrete() {
         return getDistancia()*getValor() + getNivelUrgencia()*100 + getValorSeguro();
     }
-
+    
+    public String toString(){
+        return String.format("Frete{distancia = %.2f, valor = %.2f, nivelUrgencia = %.0f, seguro = %.2f, valorFrete = %.2f}",getDistancia(),getValor(),getNivelUrgencia(),getValorSeguro(),calcularFrete());
+    }
 
     public double getNivelUrgencia() {
         return nivelUrgencia;
@@ -35,6 +38,5 @@ public class FreteSuperExpresso extends Frete {
     public void setValorSeguro(double valorSeguro) {
         this.valorSeguro = valorSeguro;
     }
-    
-    
+   
 }
