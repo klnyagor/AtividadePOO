@@ -29,5 +29,17 @@ public class CadastroFrete {
         return total;
     }
     
+    public void exibirTodos(){
+        if(!fretes.isEmpty()){
+            for(Fretavel i: fretes){
+                System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                System.out.println(i); //Polimorfismo ao utilizar o método toString()
+            }
+            System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+        }else {
+            System.out.println("Adicione fretes!");
+        }
+    }
+    
     
 }
