@@ -17,6 +17,8 @@ public class Principal {
         cadastro.adicionarFrete(frete2);
         cadastro.adicionarFrete(frete3);
         
-        System.out.printf("Valor total: %.2f",cadastro.calcularValorTotal());
+        System.out.printf("Valor total: %.2f \n",cadastro.calcularValorTotal());
+        
+        cadastro.exibirTodos();
     }
 }
