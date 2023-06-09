@@ -3,35 +3,51 @@ package atividades.sistemaaluguel;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale; //para garantir que valores decimais formatados utlizem . na separação
 
 /**
  *
  * @author Yagor
  */
 public class AluguelQuarto {
+    private static int contador = 0;
+    private int id;
     private Hospede hospede;
     private Quarto quarto;
     private LocalDateTime entrada,saida;
     private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    private Arquivos arqAlugueis;
 
     public AluguelQuarto(Hospede hospede, Quarto quarto, String entrada, String saida) {
+        id = ++contador;
         this.hospede = hospede;
         this.quarto = quarto;
         this.entrada = LocalDateTime.parse(entrada,format);
         this.saida = LocalDateTime.parse(saida,format);
+        arqAlugueis = new Arquivos("Alugueis.csv");
     }
     
     @Override
     public String toString() {
-        return "AluguelQuarto{" + "\n hospede = " + hospede + ",\n quarto = " + quarto + ",\n entrada = " + entrada.format(format) + ",\n saida = " + saida.format(format) +",\n Diarias = "+ calcularDiaria() +",\n Total a pagar = R$"+String.format("%.2f",calculaValorDiarias())+"\n}";
+        return "AluguelQuarto{ ID = "+getId() + ",\n hospede = " + hospede + ",\n quarto = " + quarto + ",\n entrada = " + entrada.format(format) + ",\n saida = " + saida.format(format) +",\n Diarias = "+ calcularDiaria() +",\n Total a pagar = R$"+String.format(Locale.US,"%.2f",calculaValorDiarias())+"\n}";
+    }
+
+    public int getId() {
+        return id;
+    }
+    
+    public void addLinha(){
+        String linha = getId() +","+ hospede.getId() +','+ quarto.getId() +','+ entrada +','+ saida +','+ calcularDiaria() +','+ String.format(Locale.US,"%.2f",calculaValorDiarias())+';';
+        arqAlugueis.escrever(linha, true);
     }
     
     public int calcularDiaria(){
-        Duration duracao = Duration.between(entrada,saida);
-        int diarias = (int)duracao.toDays()+1;
-        if(saida.getHour() >= 12){
-            diarias++;
-        }
+        LocalDateTime inicio = entrada.withHour(12).withMinute(0).withSecond(0);
+        LocalDateTime fim = saida.withHour(12).withMinute(0).withSecond(0);
+        Duration duracao = Duration.between(inicio,fim);
+        int diarias = (int)duracao.toDays();
+        if(entrada.getHour()<= 12){ ++diarias; }
+        if(saida.getHour() >= 12){ ++diarias; }
         return diarias;
     }
     

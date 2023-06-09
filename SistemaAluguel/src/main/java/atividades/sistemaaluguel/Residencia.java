@@ -1,6 +1,5 @@
 package atividades.sistemaaluguel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,11 +7,14 @@ import java.util.List;
  * @author Yagor
  */
 public class Residencia {
-    
+    private static int contador = 0;
+    private int id;
     private String rua,numero,bairro,cep,telefone,email;
     private List<Quarto> quartos;
+    private Arquivos arqResidencia;
 
     public Residencia(String rua, String numero, String bairro, String cep, String telefone, String email,  List<Quarto> quartos) {
+        id = ++contador;
         this.rua = rua;
         this.bairro = bairro;
         this.cep = cep;
@@ -20,6 +22,16 @@ public class Residencia {
         this.email = email;
         this.numero = numero;
         this.quartos = quartos;
+        arqResidencia = new Arquivos("Residencias.csv");
+    }
+    
+    public void addLinha(){
+        String linha = getId() +"," +rua + ',' + numero + ',' + bairro + ',' + cep + ',' + telefone + ',' + email + ',' + quartos.size()+';';
+        arqResidencia.escrever(linha, true);
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getRua() {
@@ -81,7 +93,7 @@ public class Residencia {
 
     @Override
     public String toString() {
-        return "Residencia{" + " rua = " + rua + ", numero = " + numero + ", bairro = " + bairro + ", cep = " + cep + ", telefone = " + telefone + ", email = " + email + ", quartos = " + quartos.size() + " }";
+        return "Residencia{" + " ID = "+ id +",rua = " + rua + ", numero = " + numero + ", bairro = " + bairro + ", cep = " + cep + ", telefone = " + telefone + ", email = " + email + ", quartos = " + quartos.size() + " }";
     }
 
    

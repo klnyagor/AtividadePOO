@@ -1,21 +1,38 @@
 package atividades.sistemaaluguel;
 
+import java.util.List;
+
 /**
  *
  * @author Yagor
  */
 public class Hospede {
     private String nome,cpf,endereco,celular,telefone,email;
+    private Arquivos arqHospede;
+    private static int contador = 0;
+    private int id;
 
     public Hospede(String nome, String cpf, String endereco, String celular, String telefone, String email) {
+        id = ++contador;
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
         this.celular = celular;
         this.telefone = telefone;
         this.email = email;
+        arqHospede = new Arquivos("Hospedes.csv");
+    }
+    
+    public void addLinha(){
+        String linha = getId() +","+ nome + ',' + cpf +','+ endereco + ',' + celular + ',' + telefone + ',' + email+';';
+        arqHospede.escrever(linha, true);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    
     public String getNome() {
         return nome;
     }
@@ -66,7 +83,7 @@ public class Hospede {
 
     @Override
     public String toString() {
-        return "Hospede{" + " nome = " + nome + ", cpf = " + cpf + ", endereco = " + endereco + ", celular = " + celular + ", telefone = " + telefone + ", email = " + email + " }";
+        return "Hospede{" + "ID = "+getId() +", nome = " + nome + ", cpf = " + cpf + ", endereco = " + endereco + ", celular = " + celular + ", telefone = " + telefone + ", email = " + email + " }";
     }
     
     
