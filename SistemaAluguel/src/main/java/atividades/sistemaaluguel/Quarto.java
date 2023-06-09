@@ -1,5 +1,7 @@
 package atividades.sistemaaluguel;
 
+import java.util.Locale;
+
 /**
  *
  * @author Yagor
@@ -24,7 +26,7 @@ public class Quarto {
     public void addLinha(){
         String temAr = this.hasArCondicionado() ? "SIM" : "NAO";
         String temHidro = this.hasHidroMassagem() ? "SIM" : "NAO";
-        String linha = getId() +","+ String.format("%.2f",diaria) + ',' + capacidade + ',' + temAr + ',' + temHidro +';';
+        String linha = getId() +","+ String.format(Locale.US,"%.2f",diaria) + ',' + capacidade + ',' + temAr + ',' + temHidro +';';
         arqQuartos.escrever(linha,true);
     }
 
